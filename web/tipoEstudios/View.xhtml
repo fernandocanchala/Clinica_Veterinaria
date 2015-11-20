@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoEstudiosViewDlg" widgetVar="TipoEstudiosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTipoEstudiosTitle}">
+            <h:form id="TipoEstudiosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoEstudiosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTipoEstudiosLabel_idtipoEstudios}"/>
+                        <h:outputText value="#{tipoEstudiosController.selected.idtipoEstudios}" title="#{bundle.ViewTipoEstudiosTitle_idtipoEstudios}"/>
+                        <h:outputText value="#{bundle.ViewTipoEstudiosLabel_nombre}"/>
+                        <h:outputText value="#{tipoEstudiosController.selected.nombre}" title="#{bundle.ViewTipoEstudiosTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewTipoEstudiosLabel_descripcion}"/>
+                        <h:outputText value="#{tipoEstudiosController.selected.descripcion}" title="#{bundle.ViewTipoEstudiosTitle_descripcion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TipoEstudiosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

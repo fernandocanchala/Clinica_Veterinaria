@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VacunasCreateDlg" widgetVar="VacunasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateVacunasTitle}">
+            <h:form id="VacunasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vacunasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateVacunasLabel_idvacunas}" for="idvacunas" />
+                        <p:inputText id="idvacunas" value="#{vacunasController.selected.idvacunas}" title="#{bundle.CreateVacunasTitle_idvacunas}" required="true" requiredMessage="#{bundle.CreateVacunasRequiredMessage_idvacunas}"/>
+                        <p:outputLabel value="#{bundle.CreateVacunasLabel_vacuna}" for="vacuna" />
+                        <p:inputText id="vacuna" value="#{vacunasController.selected.vacuna}" title="#{bundle.CreateVacunasTitle_vacuna}" />
+                        <p:outputLabel value="#{bundle.CreateVacunasLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{vacunasController.selected.fecha}" title="#{bundle.EditVacunasTitle_fecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateVacunasLabel_proxFecha}" for="proxFecha" />
+                        <p:calendar id="proxFecha" pattern="MM/dd/yyyy" value="#{vacunasController.selected.proxFecha}" title="#{bundle.EditVacunasTitle_proxFecha}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vacunasController.create}" value="#{bundle.Save}" update="display,:VacunasListForm:datalist,:growl" oncomplete="handleSubmit(args,'VacunasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VacunasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

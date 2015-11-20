@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoEstudiosEditDlg" widgetVar="TipoEstudiosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoEstudiosTitle}">
+            <h:form id="TipoEstudiosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoEstudiosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTipoEstudiosLabel_idtipoEstudios}" for="idtipoEstudios" />
+                        <p:inputText id="idtipoEstudios" value="#{tipoEstudiosController.selected.idtipoEstudios}" title="#{bundle.EditTipoEstudiosTitle_idtipoEstudios}" required="true" requiredMessage="#{bundle.EditTipoEstudiosRequiredMessage_idtipoEstudios}"/>
+                        <p:outputLabel value="#{bundle.EditTipoEstudiosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{tipoEstudiosController.selected.nombre}" title="#{bundle.EditTipoEstudiosTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditTipoEstudiosLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{tipoEstudiosController.selected.descripcion}" title="#{bundle.EditTipoEstudiosTitle_descripcion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoEstudiosController.update}" value="#{bundle.Save}" update="display,:TipoEstudiosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoEstudiosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipoEstudiosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

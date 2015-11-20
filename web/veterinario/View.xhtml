@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VeterinarioViewDlg" widgetVar="VeterinarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewVeterinarioTitle}">
+            <h:form id="VeterinarioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{veterinarioController.selected != null}">
+                        <h:outputText value="#{bundle.ViewVeterinarioLabel_idveterinario}"/>
+                        <h:outputText value="#{veterinarioController.selected.idveterinario}" title="#{bundle.ViewVeterinarioTitle_idveterinario}"/>
+                        <h:outputText value="#{bundle.ViewVeterinarioLabel_nombres}"/>
+                        <h:outputText value="#{veterinarioController.selected.nombres}" title="#{bundle.ViewVeterinarioTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewVeterinarioLabel_apellidos}"/>
+                        <h:outputText value="#{veterinarioController.selected.apellidos}" title="#{bundle.ViewVeterinarioTitle_apellidos}"/>
+                        <h:outputText value="#{bundle.ViewVeterinarioLabel_telefono}"/>
+                        <h:outputText value="#{veterinarioController.selected.telefono}" title="#{bundle.ViewVeterinarioTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewVeterinarioLabel_targProfecional}"/>
+                        <h:outputText value="#{veterinarioController.selected.targProfecional}" title="#{bundle.ViewVeterinarioTitle_targProfecional}"/>
+                        <h:outputText value="#{bundle.ViewVeterinarioLabel_sedeIdsede}"/>
+                        <h:outputText value="#{veterinarioController.selected.sedeIdsede}" title="#{bundle.ViewVeterinarioTitle_sedeIdsede}"/>
+                        <h:outputText value="#{bundle.ViewVeterinarioLabel_tipoEstudiosIdtipoEstudios}"/>
+                        <h:outputText value="#{veterinarioController.selected.tipoEstudiosIdtipoEstudios}" title="#{bundle.ViewVeterinarioTitle_tipoEstudiosIdtipoEstudios}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="VeterinarioViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

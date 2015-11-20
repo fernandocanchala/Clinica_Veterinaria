@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VeterinarioEditDlg" widgetVar="VeterinarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditVeterinarioTitle}">
+            <h:form id="VeterinarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{veterinarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditVeterinarioLabel_idveterinario}" for="idveterinario" />
+                        <p:inputText id="idveterinario" value="#{veterinarioController.selected.idveterinario}" title="#{bundle.EditVeterinarioTitle_idveterinario}" required="true" requiredMessage="#{bundle.EditVeterinarioRequiredMessage_idveterinario}"/>
+                        <p:outputLabel value="#{bundle.EditVeterinarioLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{veterinarioController.selected.nombres}" title="#{bundle.EditVeterinarioTitle_nombres}" />
+                        <p:outputLabel value="#{bundle.EditVeterinarioLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{veterinarioController.selected.apellidos}" title="#{bundle.EditVeterinarioTitle_apellidos}" />
+                        <p:outputLabel value="#{bundle.EditVeterinarioLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{veterinarioController.selected.telefono}" title="#{bundle.EditVeterinarioTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.EditVeterinarioLabel_targProfecional}" for="targProfecional" />
+                        <p:inputText id="targProfecional" value="#{veterinarioController.selected.targProfecional}" title="#{bundle.EditVeterinarioTitle_targProfecional}" />
+                        <p:outputLabel value="#{bundle.EditVeterinarioLabel_sedeIdsede}" for="sedeIdsede" />
+                        <p:selectOneMenu id="sedeIdsede" value="#{veterinarioController.selected.sedeIdsede}" required="true" requiredMessage="#{bundle.EditVeterinarioRequiredMessage_sedeIdsede}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sedeController.itemsAvailableSelectOne}"
+                                           var="sedeIdsedeItem"
+                                           itemValue="#{sedeIdsedeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditVeterinarioLabel_tipoEstudiosIdtipoEstudios}" for="tipoEstudiosIdtipoEstudios" />
+                        <p:selectOneMenu id="tipoEstudiosIdtipoEstudios" value="#{veterinarioController.selected.tipoEstudiosIdtipoEstudios}" required="true" requiredMessage="#{bundle.EditVeterinarioRequiredMessage_tipoEstudiosIdtipoEstudios}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoEstudiosController.itemsAvailableSelectOne}"
+                                           var="tipoEstudiosIdtipoEstudiosItem"
+                                           itemValue="#{tipoEstudiosIdtipoEstudiosItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{veterinarioController.update}" value="#{bundle.Save}" update="display,:VeterinarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'VeterinarioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VeterinarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

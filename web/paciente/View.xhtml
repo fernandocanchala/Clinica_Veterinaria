@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PacienteViewDlg" widgetVar="PacienteViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPacienteTitle}">
+            <h:form id="PacienteViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pacienteController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPacienteLabel_idpaciente}"/>
+                        <h:outputText value="#{pacienteController.selected.idpaciente}" title="#{bundle.ViewPacienteTitle_idpaciente}"/>
+                        <h:outputText value="#{bundle.ViewPacienteLabel_nombre}"/>
+                        <h:outputText value="#{pacienteController.selected.nombre}" title="#{bundle.ViewPacienteTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewPacienteLabel_fechaNasaprox}"/>
+                        <h:outputText value="#{pacienteController.selected.fechaNasaprox}" title="#{bundle.ViewPacienteTitle_fechaNasaprox}"/>
+                        <h:outputText value="#{bundle.ViewPacienteLabel_dueñoCedula}"/>
+                        <h:outputText value="#{pacienteController.selected.dueñoCedula}" title="#{bundle.ViewPacienteTitle_dueñoCedula}"/>
+                        <h:outputText value="#{bundle.ViewPacienteLabel_tipoPacienteIdtipoPaciente}"/>
+                        <h:outputText value="#{pacienteController.selected.tipoPacienteIdtipoPaciente}" title="#{bundle.ViewPacienteTitle_tipoPacienteIdtipoPaciente}"/>
+                        <h:outputText value="#{bundle.ViewPacienteLabel_vacunasIdvacunas}"/>
+                        <h:outputText value="#{pacienteController.selected.vacunasIdvacunas}" title="#{bundle.ViewPacienteTitle_vacunasIdvacunas}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PacienteViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

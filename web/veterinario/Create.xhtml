@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VeterinarioCreateDlg" widgetVar="VeterinarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateVeterinarioTitle}">
+            <h:form id="VeterinarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{veterinarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateVeterinarioLabel_idveterinario}" for="idveterinario" />
+                        <p:inputText id="idveterinario" value="#{veterinarioController.selected.idveterinario}" title="#{bundle.CreateVeterinarioTitle_idveterinario}" required="true" requiredMessage="#{bundle.CreateVeterinarioRequiredMessage_idveterinario}"/>
+                        <p:outputLabel value="#{bundle.CreateVeterinarioLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{veterinarioController.selected.nombres}" title="#{bundle.CreateVeterinarioTitle_nombres}" />
+                        <p:outputLabel value="#{bundle.CreateVeterinarioLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{veterinarioController.selected.apellidos}" title="#{bundle.CreateVeterinarioTitle_apellidos}" />
+                        <p:outputLabel value="#{bundle.CreateVeterinarioLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{veterinarioController.selected.telefono}" title="#{bundle.CreateVeterinarioTitle_telefono}" />
+                        <p:outputLabel value="#{bundle.CreateVeterinarioLabel_targProfecional}" for="targProfecional" />
+                        <p:inputText id="targProfecional" value="#{veterinarioController.selected.targProfecional}" title="#{bundle.CreateVeterinarioTitle_targProfecional}" />
+                        <p:outputLabel value="#{bundle.CreateVeterinarioLabel_sedeIdsede}" for="sedeIdsede" />
+                        <p:selectOneMenu id="sedeIdsede" value="#{veterinarioController.selected.sedeIdsede}" required="true" requiredMessage="#{bundle.EditVeterinarioRequiredMessage_sedeIdsede}">
+                            <f:selectItems value="#{sedeController.itemsAvailableSelectOne}"
+                                           var="sedeIdsedeItem"
+                                           itemValue="#{sedeIdsedeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateVeterinarioLabel_tipoEstudiosIdtipoEstudios}" for="tipoEstudiosIdtipoEstudios" />
+                        <p:selectOneMenu id="tipoEstudiosIdtipoEstudios" value="#{veterinarioController.selected.tipoEstudiosIdtipoEstudios}" required="true" requiredMessage="#{bundle.EditVeterinarioRequiredMessage_tipoEstudiosIdtipoEstudios}">
+                            <f:selectItems value="#{tipoEstudiosController.itemsAvailableSelectOne}"
+                                           var="tipoEstudiosIdtipoEstudiosItem"
+                                           itemValue="#{tipoEstudiosIdtipoEstudiosItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{veterinarioController.create}" value="#{bundle.Save}" update="display,:VeterinarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'VeterinarioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VeterinarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

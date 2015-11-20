@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SedeEditDlg" widgetVar="SedeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSedeTitle}">
+            <h:form id="SedeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sedeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSedeLabel_idsede}" for="idsede" />
+                        <p:inputText id="idsede" value="#{sedeController.selected.idsede}" title="#{bundle.EditSedeTitle_idsede}" required="true" requiredMessage="#{bundle.EditSedeRequiredMessage_idsede}"/>
+                        <p:outputLabel value="#{bundle.EditSedeLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{sedeController.selected.nombre}" title="#{bundle.EditSedeTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.EditSedeLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{sedeController.selected.direccion}" title="#{bundle.EditSedeTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.EditSedeLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{sedeController.selected.telefono}" title="#{bundle.EditSedeTitle_telefono}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sedeController.update}" value="#{bundle.Save}" update="display,:SedeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SedeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SedeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

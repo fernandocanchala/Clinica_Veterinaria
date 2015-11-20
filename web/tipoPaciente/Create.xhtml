@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoPacienteCreateDlg" widgetVar="TipoPacienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoPacienteTitle}">
+            <h:form id="TipoPacienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoPacienteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTipoPacienteLabel_idtipoPaciente}" for="idtipoPaciente" />
+                        <p:inputText id="idtipoPaciente" value="#{tipoPacienteController.selected.idtipoPaciente}" title="#{bundle.CreateTipoPacienteTitle_idtipoPaciente}" required="true" requiredMessage="#{bundle.CreateTipoPacienteRequiredMessage_idtipoPaciente}"/>
+                        <p:outputLabel value="#{bundle.CreateTipoPacienteLabel_clase}" for="clase" />
+                        <p:inputText id="clase" value="#{tipoPacienteController.selected.clase}" title="#{bundle.CreateTipoPacienteTitle_clase}" />
+                        <p:outputLabel value="#{bundle.CreateTipoPacienteLabel_raza}" for="raza" />
+                        <p:inputText id="raza" value="#{tipoPacienteController.selected.raza}" title="#{bundle.CreateTipoPacienteTitle_raza}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tipoPacienteController.create}" value="#{bundle.Save}" update="display,:TipoPacienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoPacienteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TipoPacienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
